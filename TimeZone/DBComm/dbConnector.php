@@ -9,7 +9,7 @@ public function __construct(){
 }
 	//Connect to MySQL database
 	public function connect($host, $userName, $password, $db){
-	
+		
 		$this->connection = mysqli_connect($host, $userName, $password, $db);
 		
 		if (!$this->connection) 
@@ -29,7 +29,7 @@ public function __construct(){
 			throw new Exception(mysqli_errno($connection).": ".mysqli_error($connection));
 		}
 		
-		return $recordSet;
+		return $records;
 		
 	}
 	

@@ -11,9 +11,6 @@ margin-top: 20px;
 padding: 10px;
 box-shadow: 5px 5px 10px black;
 overflow: auto;
-
-
-
 }
 
 p.error{
@@ -30,5 +27,9 @@ color: black;
 font-family: Arial;
 overflow: auto;
 
-
 }
+
+
+
+
+
