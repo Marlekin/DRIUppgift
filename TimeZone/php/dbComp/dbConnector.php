@@ -14,7 +14,7 @@ public function __construct(){
 		
 		if (!$this->connection) 
 		{
-			throw new Exception(mysqli_connect_errno().": ".mysqli_connect_error());
+			throw new Exception("Error: Can't connect to the database, aborting script");
 		}
 		
 		return $this->connection;
@@ -26,27 +26,11 @@ public function __construct(){
 	{	
 		if(!$records = mysqli_query($connection, $strSQL, MYSQLI_USE_RESULT))
 		{
-			throw new Exception(mysqli_errno($connection).": ".mysqli_error($connection));
+			throw new Exception("Error: Can't query database, aborting script");
 		}
 		
 		return $records;
 		
-	}
-	
-	//List data currently in table
-	public function listTableData($connection){
-	
-	$this->strSQL = "SELECT * FROM timestamps";
-	$records = sqlQuery($connection, $this->strSQL);
-	
-	while($record = mysqli_fetch_assoc($records)){
-	
-	echo($record['timezone']);
-	
-	}
-	
-	freeResult($records);
-	
 	}
 	
 	//Clear set of records from query
@@ -60,7 +44,7 @@ public function __construct(){
 	{
 		if(!mysqli_close($connection))
 		{
-			throw new Exception(mysqli_errno($connection).": ".mysqli_error($connection));
+			throw new Exception("Error: Can't disconnect from the database");
 		}
 	}
 	
