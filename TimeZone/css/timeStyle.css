@@ -28,19 +28,25 @@ section{
 	overflow: auto;
 }
 
-p.ok{
+.ok{
 	background-color: #0099FF;
-	border-radius: 5px;
 	color: white;
+	border-radius: 5px;
 	font-size: 18px;
 	font-family: Arial;
 	padding: 5px;
 	box-shadow: 4px 4px 2px black;
 }
 
-p.error{
-	color: red;
+.notice{
+	display: inline-block;
+	background-color: gray;
+	color: white;
+	border-radius: 5px;
 	font-size: 18px;
+	font-family: Arial;
+	padding: 5px;
+	box-shadow: 4px 4px 2px black;
 }
 
 article.valid{

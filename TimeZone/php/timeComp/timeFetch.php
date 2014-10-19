@@ -14,7 +14,7 @@ class TimeFetch{
 
 	}
 	
-	public function report(){
+	public function report($datetime){
 	}
 	
 }

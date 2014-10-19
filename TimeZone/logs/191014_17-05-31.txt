@@ -1,0 +1,55 @@
+
+Succesfully inserted into database:
+--------------------------------------------------------
+
+Timezone: Africa/Abidjan, Successfully transferred to database 
+Timezone: Africa/Accra, Successfully transferred to database 
+Timezone: Africa/Addis_Ababa, Successfully transferred to database 
+Timezone: Africa/Algiers, Successfully transferred to database 
+Timezone: Africa/Asmara, Successfully transferred to database 
+Timezone: Africa/Asmera, Successfully transferred to database 
+Timezone: Africa/Bamako, Successfully transferred to database 
+Timezone: Africa/Bangui, Successfully transferred to database 
+Timezone: Africa/Banjul, Successfully transferred to database 
+Timezone: Africa/Bissau, Successfully transferred to database 
+Timezone: Africa/Blantyre, Successfully transferred to database 
+Timezone: Africa/Brazzaville, Successfully transferred to database 
+Timezone: Africa/Bujumbura, Successfully transferred to database 
+Timezone: Africa/Cairo, Successfully transferred to database 
+Timezone: Africa/Casablanca, Successfully transferred to database 
+Timezone: Africa/Ceuta, Successfully transferred to database 
+Timezone: Africa/Conakry, Successfully transferred to database 
+Timezone: Africa/Dakar, Successfully transferred to database 
+Timezone: Africa/Dar_es_Salaam, Successfully transferred to database 
+Timezone: Africa/Djibouti, Successfully transferred to database 
+Timezone: Africa/Douala, Successfully transferred to database 
+Timezone: Africa/El_Aaiun, Successfully transferred to database 
+Timezone: Africa/Freetown, Successfully transferred to database 
+Timezone: Africa/Gaborone, Successfully transferred to database 
+Timezone: Africa/Harare, Successfully transferred to database 
+Timezone: Africa/Johannesburg, Successfully transferred to database 
+Timezone: Africa/Kampala, Successfully transferred to database 
+Timezone: Africa/Khartoum, Successfully transferred to database 
+Timezone: Africa/Kigali, Successfully transferred to database 
+Timezone: Africa/Kinshasa, Successfully transferred to database 
+Timezone: Africa/Lagos, Successfully transferred to database 
+Timezone: Africa/Libreville, Successfully transferred to database 
+Timezone: Africa/Lome, Successfully transferred to database 
+Timezone: Africa/Luanda, Successfully transferred to database 
+Timezone: Africa/Lubumbashi, Successfully transferred to database 
+Timezone: Africa/Lusaka, Successfully transferred to database 
+Timezone: Africa/Malabo, Successfully transferred to database 
+Timezone: Africa/Maputo, Successfully transferred to database 
+Timezone: Africa/Maseru, Successfully transferred to database 
+Timezone: Africa/Mbabane, Successfully transferred to database 
+Timezone: Africa/Mogadishu, Successfully transferred to database 
+Timezone: Africa/Monrovia, Successfully transferred to database 
+Timezone: Africa/Nairobi, Successfully transferred to database 
+Timezone: Africa/Ndjamena, Successfully transferred to database 
+Timezone: Africa/Niamey, Successfully transferred to database 
+Timezone: Africa/Nouakchott, Successfully transferred to database 
+Timezone: Africa/Ouagadougou, Successfully transferred to database 
+Timezone: Africa/Porto-Novo, Successfully transferred to database 
+Timezone: Africa/Sao_Tome, Successfully transferred to database 
+Timezone: Africa/Timbuktu, Successfully transferred to database 
+

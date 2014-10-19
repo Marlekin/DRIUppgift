@@ -15,6 +15,8 @@ class Main{
 	const DB_USERNAME = "admin";
 	const DB_PASSWORD = "";
 	const DB = "dridb";
+	
+
 
 	
 	const J_DOMAIN ="http://json-time.appspot.com/";	
@@ -27,6 +29,7 @@ class Main{
 	
 	private $datetime;
 	private $errors;
+	private $errorCount;
 	
 	private $started;
 	private $transferDone;
@@ -36,6 +39,7 @@ class Main{
 		$this->started = false;
 		$this->transferDone = false;
 		$this->errors = "";
+		$errorCount = 0;
 				
 		echo "<h1>Eventlog</h1>";
 	
@@ -72,7 +76,7 @@ class Main{
 		}
 		
 		catch(Exception $e){
-			echo "<p class='error'>" . $e->getMessage() . "</p>";
+			echo "<p class='notice'>" . $e->getMessage() . "</p>";
 			unlink(SessionManager::getSession());
 			exit();
 		}
@@ -88,13 +92,14 @@ class Main{
 			if($comm->isDomainAvailable(self::J_DOMAIN)){
 					
 				if ($comm->isValidJSON(self::J_TIMEZONES)){
+					echo("<p class='notice'>Web service availability validated, transfer started</p>");
 					return true;
 				}
 			}	
 		}
 			
 		catch(Exception $e){
-			echo "<p class='error'>" . $e->getMessage() . "</p>";
+			echo "<p class='notice'>" . $e->getMessage() . "</p>";
 			unlink(SessionManager::getSession());
 			exit();
 		}
@@ -121,45 +126,34 @@ class Main{
 						
 		$elementCount = count($zoneList);
 						
-		for($i = 0; $i < 5; $i++){				
+		for($i = 0; $i < 50; $i++){				
 		
 			try{
-			$stampContent = $stampFetch -> fetchTimeStamp(self::J_TIMESTAMPS, "bej");
 			
-			if(array_key_exists("datetime", $stampContent)){
+			$stampContent = $stampFetch -> fetchTimeStamp(self::J_TIMESTAMPS, $zoneList[$i]);
 			
-				if($stampFetch->isValidFormat($stampContent["datetime"])){
-							
-					$stamp = $stampFetch -> convertStamp($stampContent["datetime"]);
-										
-					$this->writeToDB($zoneList[$i], $stamp);
-											
-				}
-				
-				else{
-			
-					$this->errors .= "The datetime of " . $zoneList[$i] . " is of invalid format, skipped <br />";
-		
+			if($stampFetch->hasDateTime($stampContent, $zoneList[$i])){
+						
+				if($stampFetch->isValidFormat($zoneList[$i])){
+																	
+					$this->writeToDB($zoneList[$i], $stampFetch->getTimeStamp());
+																
 				}
 			
 			}		
-			
-			else{
-				$this->errors .= $zoneList[$i] . " does not have a timestamp, skipped <br />";
-			}
-			
+						
 			}
 			
 			catch(Exception $e){
-			
-				echo $e->getMessage();
-			
+			$this->errors .= $e->getMessage() . "<br />";
+			$this->errorCount++;
 			}
 
 		}
 	
+		$stampFetch->report($this->datetime);
 		$this->query->report($this->datetime);
-		$this->stampFetch->report($this->datetime);
+		
 		
 		$this->transferDone = true;
 		
@@ -168,23 +162,48 @@ class Main{
 	//Kasta ett exception om inte går
 	public function writeToDB($zone, $stamp){
 			
-			$this->query->insertTimezone($this->mysqli_connection, $zone, $stamp);
+			try{
+				$this->query->insertTimezone($this->mysqli_connection, $zone, $stamp);
+			}
+			catch(Exception $e){
+				echo "<p class='notice'>" . $e->getMessage() . "</p>";
+				unlink(SessionManager::getSession());
+				exit();
+			}
 
 	}
 	
 	
 	public function presentResults(){
 	
-
-	echo "
-	<h2>Successful transfers:</h2>
-	<article class='valid'>" . $this->query->listZones($this->mysqli_connection) . "</article>
-	";
+		$resultString = $this->query->listZones($this->mysqli_connection);
+		
+		echo "
+		<h2>Successful transfers:</h2>
+		<article class='valid'>";
+				
+		if($resultString != ""){
+			echo $this->query->getCount() . " rows has been succesfully transferred<br /><br />" . $resultString;
+		}
+		else{
+			echo "No rows inserted in database";
+		}
+		
+		echo "</article>";
+		
+		echo "<h2>Failed transfers:</h2>
+		<article class='invalid'>";
 	
-	echo "
-	<h2>Failed transfers:</h2>
-	<article class='invalid'>" . $this->errors . "</article>
-	";
+		if($this->errors != ""){
+			echo $this->errorCount . " errors occured <br /><br />" . $this->errors; 
+		}
+		
+		else{
+			echo "No failed transfers detected";
+		}
+		
+		
+		echo "</article>";
 	
 	}
 	
@@ -199,7 +218,7 @@ class Main{
 			echo "<p class='ok'>Database connection closed</p>";
 		}
 		catch(Exception $e){
-			echo "<p class='error'>" . $e->getMessage() . "</p>";
+			echo "<p class='notice'>" . $e->getMessage() . "</p>";
 			unlink(SessionManager::getSession());
 			exit();
 		}

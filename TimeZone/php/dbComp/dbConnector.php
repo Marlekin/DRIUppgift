@@ -10,11 +10,11 @@ public function __construct(){
 	//Connect to MySQL database
 	public function connect($host, $userName, $password, $db){
 		
-		$this->connection = mysqli_connect($host, $userName, $password, $db);
+		$this->connection = @mysqli_connect($host, $userName, $password, $db);
 		
 		if (!$this->connection) 
 		{
-			throw new Exception("Error: Can't connect to the database, aborting script");
+			throw new Exception("Error: Couldn't connect to the database, forced shutdown");
 		}
 		
 		return $this->connection;
@@ -26,7 +26,7 @@ public function __construct(){
 	{	
 		if(!$records = mysqli_query($connection, $strSQL, MYSQLI_USE_RESULT))
 		{
-			throw new Exception("Error: Can't query database, aborting script");
+			throw new Exception("Error: Can't query database, forced shutdown");
 		}
 		
 		return $records;
@@ -44,7 +44,7 @@ public function __construct(){
 	{
 		if(!mysqli_close($connection))
 		{
-			throw new Exception("Error: Can't disconnect from the database");
+			throw new Exception("Error: Couldn't disconnect from the database, forced shutdown");
 		}
 	}
 	
