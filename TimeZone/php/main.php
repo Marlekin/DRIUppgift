@@ -16,8 +16,6 @@ class Main{
 	const DB_PASSWORD = "";
 	const DB = "dridb";
 	
-
-
 	
 	const J_DOMAIN ="http://json-time.appspot.com/";	
 	const J_TIMEZONES ="http://json-time.appspot.com/timezones.json";
@@ -72,7 +70,7 @@ class Main{
 			$this->dbConnector = new DBConnector();
 		
 			$this->mysqli_connection = $this->dbConnector->connect(self::DB_HOST, self::DB_USERNAME, self::DB_PASSWORD, self::DB);
-			echo("<p class='ok'>Database connection opened</p>");
+			echo("<p class='ok'>Database connection opened...</p>");
 		}
 		
 		catch(Exception $e){
@@ -92,7 +90,7 @@ class Main{
 			if($comm->isDomainAvailable(self::J_DOMAIN)){
 					
 				if ($comm->isValidJSON(self::J_TIMEZONES)){
-					echo("<p class='notice'>Web service availability validated, transfer started</p>");
+					echo("<p class='notice'>Web service availability validated, transfer process started...</p> <br />");
 					return true;
 				}
 			}	
@@ -122,11 +120,10 @@ class Main{
 		
 		$succesString ="";
 		
-		$zoneList = $timeFetch -> fetchTimeZones(self::J_TIMEZONES);
-						
+		$zoneList = $timeFetch -> fetchTimeZones(self::J_TIMEZONES);		
 		$elementCount = count($zoneList);
 						
-		for($i = 0; $i < 50; $i++){				
+		for($i = 0; $i < $elementCount; $i++){				
 		
 			try{
 			
@@ -154,8 +151,9 @@ class Main{
 		$stampFetch->report($this->datetime);
 		$this->query->report($this->datetime);
 		
+		echo "<p class='notice'>...Transfer process done, events logged</p>";	
 		
-		$this->transferDone = true;
+		$this->transferDone = true;		
 		
 	}
 	
@@ -215,7 +213,7 @@ class Main{
 
 		try{
 			$dbConnector->close($connection);
-			echo "<p class='ok'>Database connection closed</p>";
+			echo "<p class='ok'>...Database connection closed</p>";
 		}
 		catch(Exception $e){
 			echo "<p class='notice'>" . $e->getMessage() . "</p>";

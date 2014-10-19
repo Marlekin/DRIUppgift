@@ -13,15 +13,14 @@
 		
 	<?php
 				
-		include("php/main.php");
-		include("php/util/sessionManager.php");
+		include("../TimeZone/php/main.php");
+		include("../TimeZone/php/util/sessionManager.php");
 	
 		ignore_user_abort(true);
 		set_time_limit(0);
 	
-		
 		SessionManager::setSession(basename($_SERVER['PHP_SELF'], '.php') . '.run');
-			
+					
 		if(!file_exists(SessionManager::getSession())){
 		touch(SessionManager::getSession());
 		$main = new Main();

@@ -39,7 +39,6 @@ section{
 }
 
 .notice{
-	display: inline-block;
 	background-color: gray;
 	color: white;
 	border-radius: 5px;

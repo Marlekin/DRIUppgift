@@ -22,7 +22,7 @@ class StampFetch{
 		}
 
 		else{
-			$this->errorString .= "Error: Could not fetch timestamp for" . $zone . "\r\n";
+			$this->errorString .= "Error: Could not fetch timestamp for " . $zone . "\r\n";
 			throw new Exception("Could not fetch timestamp of " . $zone . ", check URL");
 		}
 
