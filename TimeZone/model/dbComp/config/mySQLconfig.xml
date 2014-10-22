@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	<database_type>mysql</database_type>
+	<database_name>dridb</database_name>
+	<server>localhost</server>
+	<username>admin</username>
+	<password></password>
+	<table_name>timestamps</table_name>
+	<timezone_column>timezone</timezone_column>
+	<timestamp_column>timestamp</timestamp_column>
+</config>

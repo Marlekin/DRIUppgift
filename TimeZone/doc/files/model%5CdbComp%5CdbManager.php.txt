@@ -1,0 +1,22 @@
+<?php
+
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/dbComp/medoo/medoo.php");
+
+class DBManager extends medoo{
+
+
+	public function __construct($options){
+		parent::__construct($options);
+
+
+	}
+
+	public function truncateTable($strSQL){
+
+		$this->query($strSQL);
+
+	}
+}
+
+
+?>

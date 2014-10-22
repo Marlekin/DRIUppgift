@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	<domain_url>http://json-time.appspot.com/</domain_url>
+	<timezones_url>http://json-time.appspot.com/timezones.json</timezones_url>
+	<timestamps_url>http://json-time.appspot.com/time.json?tz=</timestamps_url>
+</config>

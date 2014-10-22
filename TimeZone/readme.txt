@@ -1,0 +1,1 @@
+phpdoc -d C:/xampp/htdocs/TimeZone3 -t C:/xampp/htdocs/TimeZone3/doc
