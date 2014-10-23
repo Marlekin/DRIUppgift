@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">232</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">124</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2056173854"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-515056986"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2056173854" class="accordion-body collapse in">
+            <div id="namespace-515056986" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -175,8 +175,9 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\</small>UtilController</h1>
-                    <p><em></em></p>
-                    
+                    <p><em>Sets up the configuration for the script and takes the the outup from the
+time component side and provides it as input for the the database component side.</em></p>
+                    <p>Calls the view to update itself when needed.</p>
                     
                                         
                     <section id="summary">
@@ -196,13 +197,12 @@
                             <section class="span4">
                                                                     <a href="../classes/UtilController.html#method___construct" class="">__construct()</a><br />
                                                                     <a href="../classes/UtilController.html#method_start" class="">start()</a><br />
-                                                                    <a href="../classes/UtilController.html#method_stop" class="">stop()</a><br />
-                                                                    <a href="../classes/UtilController.html#method_logSomething" class="">logSomething()</a><br />
                                                                     <a href="../classes/UtilController.html#method_loadConfig" class="">loadConfig()</a><br />
                                                                     <a href="../classes/UtilController.html#method_writeToDB" class="">writeToDB()</a><br />
                                                                     <a href="../classes/UtilController.html#method_setViewNotice" class="">setViewNotice()</a><br />
                                                                     <a href="../classes/UtilController.html#method_setViewSuccesses" class="">setViewSuccesses()</a><br />
                                                                     <a href="../classes/UtilController.html#method_setViewErrors" class="">setViewErrors()</a><br />
+                                                                    <a href="../classes/UtilController.html#method_logSomething" class="">logSomething()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -230,7 +230,6 @@
                                                                     <a href="../classes/UtilController.html#property_timeView" class="">$timeView</a><br />
                                                                     <a href="../classes/UtilController.html#property_timeController" class="">$timeController</a><br />
                                                                     <a href="../classes/UtilController.html#property_dbController" class="">$dbController</a><br />
-                                                                    <a href="../classes/UtilController.html#property_sessionManager" class="">$sessionManager</a><br />
                                                                     <a href="../classes/UtilController.html#property_configManager" class="">$configManager</a><br />
                                                             </section>
                             <section class="span4">
@@ -278,13 +277,13 @@
             <a id="property_timeView" name="property_timeView" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$timeView</h3>
-                <pre class="signature">$timeView : </pre>
+                <pre class="signature">$timeView : \TimeView</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                <a href="../classes/TimeView.html">\TimeView</a>
+                &mdash; Holds an instance of TimeView                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -302,13 +301,13 @@
             <a id="property_timeController" name="property_timeController" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$timeController</h3>
-                <pre class="signature">$timeController : </pre>
+                <pre class="signature">$timeController : \TimeController</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                <a href="../classes/TimeController.html">\TimeController</a>
+                &mdash; Holds an instance of TimeController                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -326,37 +325,13 @@
             <a id="property_dbController" name="property_dbController" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$dbController</h3>
-                <pre class="signature">$dbController : </pre>
+                <pre class="signature">$dbController : \DBController</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_sessionManager" name="property_sessionManager" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$sessionManager</h3>
-                <pre class="signature">$sessionManager : </pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                
-                                            </article>
+                <a href="../classes/DBController.html">\DBController</a>
+                &mdash; Holds an instance of DBController                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -374,13 +349,13 @@
             <a id="property_configManager" name="property_configManager" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$configManager</h3>
-                <pre class="signature">$configManager : </pre>
+                <pre class="signature">$configManager : \ConfigManager</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                <a href="../classes/ConfigManager.html">\ConfigManager</a>
+                &mdash; Holds an instance of ConfigManager                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -407,7 +382,7 @@
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$view</span>) </pre>
-                <p><em></em></p>
+                <p><em>Session starts when class is isntantiated</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -415,7 +390,7 @@
                                                     <tr>
                                 <td></td>
                                 <td>$view </td>
-                                <td></td>
+                                <td><p>A reference to TimeView</p></td>
                             </tr>
                                             </table>
                 
@@ -440,75 +415,12 @@
             <article class="method">
                 <h3 class="public ">start()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">start() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">start() : void</pre>
+                <p><em>This method handles the script procedure from start to finish. Collaborates
+data from both database side and web service side, catches exceptions along
+the way and calls for the view to update itself at appropriate moments</em></p>
                 
 
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_stop" name="method_stop" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">stop()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">stop() </pre>
-                <p><em></em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_logSomething" name="method_logSomething" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">logSomething()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">logSomething(  <span class="argument">$headerString</span>,   <span class="argument">$contentString</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$headerString </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$contentString </td>
-                                <td></td>
-                            </tr>
-                                            </table>
                 
                 
                 				
@@ -531,26 +443,29 @@
             <article class="method">
                 <h3 class="public ">loadConfig()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">loadConfig(  <span class="argument">$path</span>,   <span class="argument">$filename</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">loadConfig(string  <span class="argument">$path</span>, string  <span class="argument">$filename</span>) : array&lt;mixed,string&gt;</pre>
+                <p><em>Loads a configuration file using ConfigManager</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$path </td>
-                                <td></td>
+                                <td><p>The path to the XML file</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$filename </td>
-                                <td></td>
+                                <td><p>The filename of the XML file</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>An array containing the configuration</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -570,36 +485,21 @@
             <article class="method">
                 <h3 class="public ">writeToDB()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">writeToDB(  <span class="argument">$table</span>,   <span class="argument">$val1</span>,   <span class="argument">$val2</span>,   <span class="argument">$zone</span>,   <span class="argument">$stamp</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">writeToDB(string  <span class="argument">$zone</span>, string  <span class="argument">$stamp</span>) : void</pre>
+                <p><em>Calls DBController to insert a timezone and timestamp into the database</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
-                                <td>$table </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$val1 </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$val2 </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$zone </td>
-                                <td></td>
+                                <td><p>The timezone name</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$stamp </td>
-                                <td></td>
+                                <td><p>The timestamp</p></td>
                             </tr>
                                             </table>
                 
@@ -624,16 +524,21 @@
             <article class="method">
                 <h3 class="public ">setViewNotice()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setViewNotice(  <span class="argument">$message</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setViewNotice(string  <span class="argument">$message</span>, string  <span class="argument">$type</span>) : void</pre>
+                <p><em>Calls the view to show a notice of a given type</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$message </td>
-                                <td></td>
+                                <td><p>The message to be output</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>The type of message to be output (blue or gray)</p></td>
                             </tr>
                                             </table>
                 
@@ -658,8 +563,8 @@
             <article class="method">
                 <h3 class="public ">setViewSuccesses()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setViewSuccesses() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setViewSuccesses() : void</pre>
+                <p><em>Calls the view to show the article containing a list of successful database insertions</em></p>
                 
 
                 
@@ -684,10 +589,59 @@
             <article class="method">
                 <h3 class="public ">setViewErrors()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setViewErrors() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">setViewErrors() : void</pre>
+                <p><em>Calls the view to show the article containing a list of errors from the WS transfer</em></p>
                 
 
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_logSomething" name="method_logSomething" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">logSomething()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">logSomething(string  <span class="argument">$headerString</span>, string  <span class="argument">$count</span>, string  <span class="argument">$contentString</span>, string  <span class="argument">$datetime</span>) : void</pre>
+                <p><em>Calls the logger to log something</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$headerString </td>
+                                <td><p>The header of the something</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$count </td>
+                                <td><p>The count of the something that happened</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$contentString </td>
+                                <td><p>The content of the something</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$datetime </td>
+                                <td><p>The filename of the file the something is to be logged in</p></td>
+                            </tr>
+                                            </table>
                 
                 
                 				
@@ -753,7 +707,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on October 22nd, 2014 at 16:01.
+                    on October 23rd, 2014 at 19:54.
                 </section>
             </section>
         </section>

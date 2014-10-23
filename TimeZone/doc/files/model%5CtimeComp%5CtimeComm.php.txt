@@ -1,12 +1,18 @@
 <?php
 
+
+/**
+*Handles the communication with the web service. Checks if the domain at the
+*given URL is available and that there exists a JSON there 
+*/
 class TimeComm{
 
-	public function __construct(){
- 
- 
-	}	
-
+	/**
+	*Checks if the URL given is valid and that we don't recieve a 404
+	*
+	*@param string $domain The URL to where the domain is
+	*@return bool
+	*/
 	public function isDomainAvailable($domain){
 
 		//check, if a valid url is provided
@@ -29,6 +35,7 @@ class TimeComm{
 
 		curl_close($curlIn);
 
+		//Check if domain responds
 		if ($response){ 
 
 			return true;
@@ -41,6 +48,12 @@ class TimeComm{
 		}
 	}
 
+	/**
+	*Tries to fetch the JSON. If it can't throws an exception
+	*
+	*@param string $url The URL to where the JSON (list of timezones) is supposed to be
+	*@return bool
+	*/
 	public function isValidJSON($url){
 
 		if(@json_decode(file_get_contents($url))){

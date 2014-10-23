@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">232</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">124</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-712286264"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-970476908"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-712286264" class="accordion-body collapse in">
+            <div id="namespace-970476908" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -175,7 +175,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\</small>MyDB</h1>
-                    <p><em></em></p>
+                    <p><em>Inherits the Medoo framework. Acts as an abstracted mediating layer in the application.</em></p>
                     
                     
                                         
@@ -213,6 +213,8 @@
                                                                     <a href="../classes/medoo.html#method_error" class="">error()</a><br />
                                                                     <a href="../classes/medoo.html#method_last_query" class="">last_query()</a><br />
                                                                     <a href="../classes/medoo.html#method_info" class="">info()</a><br />
+                                                                    <a href="../classes/MyDB.html#method_selectSQL" class="">selectSQL()</a><br />
+                                                                    <a href="../classes/MyDB.html#method_insertSQL" class="">insertSQL()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -570,16 +572,16 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$options</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">__construct(array&lt;mixed,string&gt;  <span class="argument">$options</span>) </pre>
+                <p><em>Calls the parent constructor with the incoming DB settings for connecting to the database</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>array&lt;mixed,string&gt;</td>
                                 <td>$options </td>
-                                <td></td>
+                                <td><p>Array containing settings for the database. Can't be null or empty.</p></td>
                             </tr>
                                             </table>
                 
@@ -1372,6 +1374,107 @@
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_selectSQL" name="method_selectSQL" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">selectSQL()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">selectSQL(string  <span class="argument">$tableName</span>, string  <span class="argument">$zoneColumn</span>, string  <span class="argument">$stampColumn</span>) : array&lt;mixed,string&gt;</pre>
+                <p><em>Makes a select-query towards the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tableName </td>
+                                <td><p>The name of the table in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$zoneColumn </td>
+                                <td><p>The name of the timezone column in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$stampColumn </td>
+                                <td><p>The name of the timestamp column in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>A two-dimensional array containing timezones and timestamps</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_insertSQL" name="method_insertSQL" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">insertSQL()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">insertSQL(string  <span class="argument">$tableName</span>, string  <span class="argument">$zoneColumn</span>, string  <span class="argument">$stampColumn</span>, string  <span class="argument">$zone</span>, string  <span class="argument">$stamp</span>) : void</pre>
+                <p><em>Makes an insert-query towards the database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tableName </td>
+                                <td><p>The name of the table in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$zoneColumn </td>
+                                <td><p>The name of the timezone column in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$stampColumn </td>
+                                <td><p>The name of the timestamp column in the DB. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$zone </td>
+                                <td><p>The name of the timezone. Can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$stamp </td>
+                                <td><p>The timestamp. Canät be empty or null</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                                     <div class="row-fluid">
         <div class="span8 content class">
             <a id="method_column_quote" name="method_column_quote" class="anchor"></a>
@@ -1754,7 +1857,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on October 22nd, 2014 at 16:01.
+                    on October 23rd, 2014 at 19:54.
                 </section>
             </section>
         </section>

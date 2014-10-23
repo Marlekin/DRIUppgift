@@ -1,11 +1,15 @@
-
 <?php
 
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/utilController.php");
+
 /**
-*Something about this class just gives me the creeps
+*Handles the updating of the view with the dynamic content
 */
 class TimeView{
 
+	/**
+	*@var UtilController Holds an instance of the util controller
+	*/
 	private $utilController;
 	
 	public function __construct(){
@@ -13,32 +17,27 @@ class TimeView{
 		echo "<h1> Eventlog </h1>";
 
 		$this->utilController = new utilController($this);
-
-		$this->start();
-		
-	}
-
-	
-	/**
-	*Invokes the start method in utilController
-	*@return void
-	*/
-	public function start(){
-		$this->utilController->start();
 	}
 
 
-
 	/**
-	*Updates the view with results from web service fetching and database insertion.
+	*Updates the view with results from database insertion.
 	*
-	*@param string $successes | List of successful DB inserts as string. Can't be empty.
-	*@param string $errors | List of errors in fetching or converting as string. Can't be empty
+	*@param string $successes List of successful DB inserts as string. Can't be empty.
 	*@return void
 	*/
 	public function showSuccesses($successes){
+
+		echo $successes;
+
 	}
 
+	/**
+	*Updates the view with results from database insertion.
+	*
+	*@param string $errors List of errors encountered when fetching from WS. Can't be empty.
+	*@return void
+	*/
 	public function showErrors($errors){
 
 		echo $errors;
@@ -46,44 +45,17 @@ class TimeView{
 	}
 
 
+	/**
+	*Updates the view with a notice of an event
+	*
+	*@param string $message A message that displays information about something which occurred during the process. Can't be empty.
+	*
+	*@return void
+	*/
 	public function showNotice($message){
+		
 		echo $message;
-	}
 
-
-
-
-	public function presentResults(){
-	
-		$resultString = $this->query->listZones($this->mysqli_connection);
-		
-		echo "
-		<h2>Successful transfers:</h2>
-		<article class='valid'>";
-				
-		if($resultString != ""){
-			echo $this->query->getCount() . " rows has been succesfully transferred<br /><br />" . $resultString;
-		}
-		else{
-			echo "No rows inserted in database";
-		}
-		
-		echo "</article>";
-		
-		echo "<h2>Failed transfers:</h2>
-		<article class='invalid'>";
-	
-		if($this->errors != ""){
-			echo $this->errorCount . " errors occured <br /><br />" . $this->errors; 
-		}
-		
-		else{
-			echo "No failed transfers detected";
-		}
-		
-		
-		echo "</article>";
-	
 	}
 }
 

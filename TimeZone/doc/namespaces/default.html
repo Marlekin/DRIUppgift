@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">232</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">124</span>
                                 </a>
                             </li>
                             <li>
@@ -88,10 +88,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1223538071"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-230425484"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1223538071" class="accordion-body collapse in">
+            <div id="namespace-230425484" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -133,11 +133,12 @@
                     <table class="table table-hover">
                                             <tr>
                             <td><a href="../classes/ConfigManager.html">ConfigManager</a></td>
-                            <td><em></em></td>
+                            <td><em>Reads from the local XML configuration files and sends it to the utility controller</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/DBController.html">DBController</a></td>
-                            <td><em></em></td>
+                            <td><em>Controls the setting up of the database, calls operations from the
+classes in the DB component and provides the ulility controller with data</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/Logger.html">Logger</a></td>
@@ -149,39 +150,45 @@
                         </tr>
                                             <tr>
                             <td><a href="../classes/MyDB.html">MyDB</a></td>
-                            <td><em></em></td>
+                            <td><em>Inherits the Medoo framework. Acts as an abstracted mediating layer in the application.</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/MySQLDB.html">MySQLDB</a></td>
-                            <td><em></em></td>
+                            <td><em>Inherits from class MyDB. Stores variables and handle operations that are
+specific for the given MySQL database</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/SessionManager.html">SessionManager</a></td>
-                            <td><em></em></td>
+                            <td><em>Handles the session for the runtime of the script. Does this by dropping
+a file at a given location. If the file exists, the script is running.</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/StampFetch.html">StampFetch</a></td>
-                            <td><em></em></td>
+                            <td><em>Handles the fetching, checking, converting and returning
+of all the individual timestamps</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/TimeComm.html">TimeComm</a></td>
-                            <td><em></em></td>
+                            <td><em>Handles the communication with the web service. Checks if the domain at the
+given URL is available and that there exists a JSON there</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/TimeController.html">TimeController</a></td>
-                            <td><em></em></td>
+                            <td><em>Validates availability of domain and JSON, arranges fetching of timezones and
+timestamps and sends records of errors occurred to the utility controller</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/TimeView.html">TimeView</a></td>
-                            <td><em>Something about this class just gives me the creeps</em></td>
+                            <td><em>Handles the updating of the view with the dynamic content</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/UtilController.html">UtilController</a></td>
-                            <td><em></em></td>
+                            <td><em>Sets up the configuration for the script and takes the the outup from the
+time component side and provides it as input for the the database component side.</em></td>
                         </tr>
                                             <tr>
                             <td><a href="../classes/ZoneFetch.html">ZoneFetch</a></td>
-                            <td><em></em></td>
+                            <td><em>Fetches the timezones from the web service</em></td>
                         </tr>
                                         </table>
                                     </div>
@@ -237,7 +244,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on October 22nd, 2014 at 16:01.
+                    on October 23rd, 2014 at 19:54.
                 </section>
             </section>
         </section>

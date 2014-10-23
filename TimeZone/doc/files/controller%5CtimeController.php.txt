@@ -1,37 +1,72 @@
 <?php
 
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/timeComm.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/zoneFetch.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/stampFetch.php");
+
+/**
+*Validates availability of domain and JSON, arranges fetching of timezones and
+*timestamps and sends records of errors occurred to the utility controller
+*/
 class TimeController{
 
+	/**
+	*@var ZoneFetch Holds an instance of ZoneFetch
+	*/
 	private $zoneFetch;
+
+	/**
+	*@var ZoneFetch Holds an instance of StampFetch
+	*/
 	private $stampFetch;
+
+	/**
+	*@var string Holds a string containing a list of errors
+	*/
 	private $errors;
+
+	/**
+	*@var int Holds the count of errors occurred during WS transfer
+	*/	
+	private $errorCount;
 
 	public function __construct(){
 
-	$this->zoneFetch = new ZoneFetch();
-	$this->stampFetch = new StampFetch();
+		$this->zoneFetch = new ZoneFetch();
+		$this->stampFetch = new StampFetch();
 
-	$errors = "";
+		$errors = "";
+		$errorCount = 0;
 
 	}
 
 
+
+	/**
+	*Checks if both domain is available and json exists at location
+	*
+	*@param string[] $urls An array that holds strings of URL's from the XML config file
+	*@return bool
+	*/
 	public function communicateWS($urls){
 
 		$comm = new TimeComm();
 	
 		try{
+
 			if($comm->isDomainAvailable($urls['domain_url'])){
 					
 				if ($comm->isValidJSON($urls['timezones_url'])){
-					echo("<p class='notice'>Web service availability validated, transfer process started...</p> <br />");
+					
 					return true;
 				}
 			}	
 		}
 			
 		catch(Exception $e){
+
 			throw $e;
+
 		}
 		
 		return false;
@@ -39,6 +74,13 @@ class TimeController{
 	}
 
 
+	/**
+	*Arranges the fetching of timezones and timestamps. Checks if stamp had datetime and
+	*is of valid format before assigning zone and stamp to a final array
+	*
+	*@param string[] @urls An array that holds strings of URL's from the XML config file
+	*@return string[] A two-dimensional array which holds the timezones and timestamps
+	*/
 	public function fetch($urls){
 
 		$timeArray = array();
@@ -47,7 +89,7 @@ class TimeController{
 		$zoneCount = count($zones);
 		$count = 0;
 
-		for($i = 0; $i < $zoneCount; $i++){
+		for($i = 0; $i < 20; $i++){
 
 			try{
 
@@ -61,28 +103,52 @@ class TimeController{
 						$timeArray['stamp'][$count] = $this->stampFetch->getTimeStamp();
 
 						$count++;
+
 					}
 
 				}
 			}
 			catch(Exception $e){
-				$this->errors .= $e->getMessage() ."<br />";
-			}
 
+				$this->errors .= $e->getMessage() ."<br />";
+				$this->errorCount++;
+
+			}
 		}
 
 		return $timeArray;
 	}
 
-	public function reportErrors(){
-		if($this->errors != ""){
-			return $this->errors;
-		}
-		else{
-			return "No errors detected";
-		}
+	/**
+	*Returns the count of errors that has occurred during the WS transfer
+	*
+	*@return int The error count
+	*/
+	public function getErrorCount(){
+
+		return $this->errorCount;
+
 	}
 
+	/**
+	*Returns a list of the kinds of errors that occurred during the WS transfer
+	*
+	*@return mixed|string List of errors or message saying there were no errors
+	*/
+	public function reportErrors(){
+
+		if($this->errors != ""){
+
+			return $this->errorCount . " errors detected:<br />" . $this->errors;
+
+		}
+
+		else{
+
+			return "No errors detected";
+
+		}
+	}
 }
 
 

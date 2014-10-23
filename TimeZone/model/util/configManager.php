@@ -1,24 +1,51 @@
 <?php
 
+
+/**
+*Reads from the local XML configuration files and sends it to the utility controller 
+*/
 class ConfigManager{
 
+	/**
+	*@var string[] $config | Stores the xml file content in an array
+	*/
 	private $config;
 
-	public function __construct(){
-
-	}
-
+	/**
+	*@param string $path | Path to xml file relative to document root.
+	*@param string $filename | filename of xml file 
+	*@return void
+	*/
 	public function readConfig($path, $filename){
-		$this->config = (array)simplexml_load_file($_SERVER['DOCUMENT_ROOT'] . $path . $filename);
+			
+
+		if(file_exists($_SERVER['DOCUMENT_ROOT'] . $path . $filename)){
+
+			$this->config = @(array)simplexml_load_file(
+			$_SERVER['DOCUMENT_ROOT'] . $path . $filename);
+
+		}
+
+		else{
+
+			throw new Exception("Can't find configuration file '" .$filename.
+			 "' at: " . $path);
+
+		}
 	}
 
+	/**
+	*@param string $path | The path to the configuration file, relative to the document root 
+	*@param string $filename | The name of the file, "someFile.xml"
+	*@return string[] $this->config | Returns the xml file content array
+	*/
 	public function getConfig($path, $filename){
 
 		$this->readConfig($path, $filename);
 
 		return $this->config;
-	}
 
+	}
 }
 
 ?>

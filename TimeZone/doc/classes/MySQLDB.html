@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">232</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">124</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-984430832"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1579940398"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-984430832" class="accordion-body collapse in">
+            <div id="namespace-1579940398" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -175,7 +175,8 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\</small>MySQLDB</h1>
-                    <p><em></em></p>
+                    <p><em>Inherits from class MyDB. Stores variables and handle operations that are
+specific for the given MySQL database</em></p>
                     
                     
                                         
@@ -195,6 +196,8 @@
                         <section class="row-fluid public">
                             <section class="span4">
                                                                     <a href="../classes/MySQLDB.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/MySQLDB.html#method_selectSQL" class="">selectSQL()</a><br />
+                                                                    <a href="../classes/MySQLDB.html#method_insertSQL" class="">insertSQL()</a><br />
                                                                     <a href="../classes/medoo.html#method_query" class="">query()</a><br />
                                                                     <a href="../classes/medoo.html#method_exec" class="">exec()</a><br />
                                                                     <a href="../classes/medoo.html#method_quote" class="">quote()</a><br />
@@ -213,10 +216,10 @@
                                                                     <a href="../classes/medoo.html#method_error" class="">error()</a><br />
                                                                     <a href="../classes/medoo.html#method_last_query" class="">last_query()</a><br />
                                                                     <a href="../classes/medoo.html#method_info" class="">info()</a><br />
-                                                                    <a href="../classes/MySQLDB.html#method_selectSQL" class="">selectSQL()</a><br />
-                                                                    <a href="../classes/MySQLDB.html#method_insertSQL" class="">insertSQL()</a><br />
                                                                     <a href="../classes/MySQLDB.html#method_truncateSQL" class="">truncateSQL()</a><br />
                                                                     <a href="../classes/MySQLDB.html#method_getCount" class="">getCount()</a><br />
+                                                                    <a href="../classes/MySQLDB.html#method_getZoneColumn" class="">getZoneColumn()</a><br />
+                                                                    <a href="../classes/MySQLDB.html#method_getStampColumn" class="">getStampColumn()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -257,8 +260,11 @@
                                                                     <em>No private methods found</em>
                                                             </section>
                             <section class="span4">
+                                                                    <a href="../classes/MySQLDB.html#property_dbName" class="">$dbName</a><br />
+                                                                    <a href="../classes/MySQLDB.html#property_tblName" class="">$tblName</a><br />
+                                                                    <a href="../classes/MySQLDB.html#property_zoneCol" class="">$zoneCol</a><br />
+                                                                    <a href="../classes/MySQLDB.html#property_stampCol" class="">$stampCol</a><br />
                                                                     <a href="../classes/MySQLDB.html#property_dbCount" class="">$dbCount</a><br />
-                                                                    <a href="../classes/MySQLDB.html#property_results" class="">$results</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -566,16 +572,16 @@
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_dbCount" name="property_dbCount" class="anchor"></a>
+            <a id="property_dbName" name="property_dbName" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$dbCount</h3>
-                <pre class="signature">$dbCount : </pre>
+                <h3 class="private ">$dbName</h3>
+                <pre class="signature">$dbName : string</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                
-                                            </article>
+                string
+                &mdash; The name of the MySQL DB. Can&#039;t be empty or null                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -590,16 +596,88 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_results" name="property_results" class="anchor"></a>
+            <a id="property_tblName" name="property_tblName" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$results</h3>
-                <pre class="signature">$results : </pre>
+                <h3 class="private ">$tblName</h3>
+                <pre class="signature">$tblName : string</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
+                string
+                &mdash; The name of the MySQL DB table. Can&#039;t be empty or null                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_zoneCol" name="property_zoneCol" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$zoneCol</h3>
+                <pre class="signature">$zoneCol : string</pre>
+                <p><em></em></p>
                 
-                                            </article>
+
+                                <h4>Type</h4>
+                string
+                &mdash; The name of the timezone column in the MySQL DB. Can&#039;t be empty or null                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_stampCol" name="property_stampCol" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$stampCol</h3>
+                <pre class="signature">$stampCol : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The name of the timestamp column in the MySQL DB. Can&#039;t be empty or null                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dbCount" name="property_dbCount" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dbCount</h3>
+                <pre class="signature">$dbCount : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; The count of succesful DB insertions. Can&#039;t be empty or null                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -625,16 +703,84 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$op</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">__construct(array&lt;mixed,string&gt;  <span class="argument">$options</span>) </pre>
+                <p><em>Calls the parent constructor with the incoming DB settings for connecting to the database</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
-                                <td>$op </td>
-                                <td></td>
+                                <td>array&lt;mixed,string&gt;</td>
+                                <td>$options </td>
+                                <td><p>Array containing settings for the database. Can't be null or empty.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_selectSQL" name="method_selectSQL" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">selectSQL()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">selectSQL() : array&lt;mixed,string&gt;</pre>
+                <p><em>Routes a select-query to MyDB, giving the table name and column names</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>A two-dimensional array containing timezones and timestamps</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_insertSQL" name="method_insertSQL" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">insertSQL()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">insertSQL(string  <span class="argument">$zone</span>, string  <span class="argument">$stamp</span>) : void</pre>
+                <p><em>Routes an insert-query to MyDB, giving the table name, the column names and the items to be inserted</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$zone </td>
+                                <td><p>The timezone name, can't be empty or null</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$stamp </td>
+                                <td><p>The timestamp, can't be empty or null</p></td>
                             </tr>
                                             </table>
                 
@@ -1429,110 +1575,14 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_selectSQL" name="method_selectSQL" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">selectSQL()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">selectSQL(  <span class="argument">$table</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$table </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_insertSQL" name="method_insertSQL" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">insertSQL()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">insertSQL(  <span class="argument">$table</span>,   <span class="argument">$val1</span>,   <span class="argument">$val2</span>,   <span class="argument">$zone</span>,   <span class="argument">$stamp</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$table </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$val1 </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$val2 </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$zone </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$stamp </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
             <a id="method_truncateSQL" name="method_truncateSQL" class="anchor"></a>
             <article class="method">
                 <h3 class="public ">truncateSQL()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">truncateSQL(  <span class="argument">$table</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">truncateSQL() : void</pre>
+                <p><em>Makes a query to truncate the table in the MySQL database</em></p>
                 
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$table </td>
-                                <td></td>
-                            </tr>
-                                            </table>
                 
                 
                 				
@@ -1555,13 +1605,74 @@
             <article class="method">
                 <h3 class="public ">getCount()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCount() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">getCount() : integer</pre>
+                <p><em>Gets the count of successful database insertions</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>Returns the amount of succesfull DB inserts. Can't be null</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getZoneColumn" name="method_getZoneColumn" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getZoneColumn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getZoneColumn() : string</pre>
+                <p><em>Gets the name of the timezone column in the MySQL database</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Returns the timezone column name</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getStampColumn" name="method_getStampColumn" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getStampColumn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getStampColumn() : string</pre>
+                <p><em>Gets the name of the timestamp column in the MySQL database</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Returns the timestamp column name</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1957,7 +2068,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on October 22nd, 2014 at 16:01.
+                    on October 23rd, 2014 at 19:54.
                 </section>
             </section>
         </section>

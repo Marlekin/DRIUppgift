@@ -1,97 +1,200 @@
 ﻿<?php
+ignore_user_abort(true);
+set_time_limit(0);
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/timeController.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/dbController.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/sessionManager.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/logger.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/configManager.php");
 
+/**
+*Sets up the configuration for the script and takes the the outup from the 
+*time component side and provides it as input for the the database component side.
+*Calls the view to update itself when needed. 
+*/
 class UtilController{
 
+	/**
+	*@var TimeView Holds an instance of TimeView
+	*/
 	private $timeView;
+
+	/**
+	*@var TimeController Holds an instance of TimeController
+	*/
 	private $timeController;
+
+	/**
+	*@var DBController Holds an instance of DBController
+	*/
 	private $dbController;
-	private $sessionManager;
+
+	/**
+	*@var ConfigManager Holds an instance of ConfigManager
+	*/
 	private $configManager;
 
+	/**
+	*Session starts when class is isntantiated
+	*
+	*@param $view A reference to TimeView
+	*/
 	public function __construct($view){
+
 		$this->timeView = $view;
 
-		$this->sessionManager = new SessionManager();
 		$this->configManager = new ConfigManager();
 		$this->timeController = new TimeController();
 		$this->dbController = new DBController();
 
-	}
-
-	//Methods for SessionManager
-	public function start(){
 		try{
 
-			$this->sessionManager->startSession();
+			if(SessionManager::startSession()){
+
+				$this->start();
+				SessionManager::stopSession();
+
+			}
+		}
+
+		catch(Exception $e){
+
+			$this->setViewNotice($e->getMessage(), "gray");
+
+		}
+	}
+
+	/**
+	*This method handles the script procedure from start to finish. Collaborates
+	*data from both database side and web service side, catches exceptions along
+	*the way and calls for the view to update itself at appropriate moments 
+	*
+	*@return void
+	*/
+	public function start(){
+
+		try{
+
+			$date = date('dmy_H-i-s');
 
 			$this->dbController->setDatabase(
 				$dbConfig = $this->loadConfig(
 								"/TimeZone3/model/dbComp/config/","mySQLConfig.xml"));
 
-			$this->setViewNotice("<p class ='ok'>Database connection established</p>");
+			$this->setViewNotice("Database connection established", "blue");
+
 
 			$this->dbController->flushTable($dbConfig['table_name']);
 
-		
 
 			if($this->timeController->communicateWS($wsConfig = $this->loadConfig(
 									"/TimeZone3/model/timeComp/config/", "timeConfig.xml"))){
 
+				$this->setViewNotice("Web service availability validated, 
+										transfer process started...", "gray");
+
 				$timeZones = $this->timeController->fetch($wsConfig);
 				$elements = count($timeZones['zone']);
 
-				for($i = 0; $i < $elements; $i++){
+				for($i = 0; $i < 20; $i++){
 
-					$this->writeToDB($dbConfig['table_name'], $dbConfig['timezone_column'],
-							$dbConfig['timestamp_column'], $timeZones['zone'][$i], $timeZones['stamp'][$i]);
-
+					$this->writeToDB($timeZones['zone'][$i], $timeZones['stamp'][$i]);
 
 				}
-				$this->setViewErrors();
-			}
 
+
+				$this->setViewNotice("...Transfer completed", "gray");
+
+
+				$this->logSomething("---Failed Transers---", $this->timeController->getErrorCount(), 
+									$this->timeController->reportErrors(), $date);
+
+				$this->setViewSuccesses();
+				$this->setViewErrors();
+
+				$this->setViewNotice("Process completed. Have a nice day "
+						. $dbConfig['username'], "blue");
+			}
 		}
 
 		catch(Exception $e){
-			$this->setViewNotice("<p class='notice'>" . $e->getMessage()) . "</p>";
-		}
 
-		
-		
-		$this->stop();
-	}
+			$this->setViewNotice($e->getMessage(), "gray");
 
-	public function stop(){
-			
-		$this->sessionManager->stopSession();	
-
-	}
-
-	//Methods for logger
-	public function logSomething($headerString, $contentString){
-		Logger::log($headerString, $contentString);
+		}	
 	}
 
 	//Methods for ConfigManager
+
+	/**
+	*Loads a configuration file using ConfigManager
+	*
+	*@param string $path The path to the XML file
+	*@param string $filename The filename of the XML file
+	*@return string[] An array containing the configuration
+	*/
 	public function loadConfig($path, $filename){
+
 		$config = $this->configManager->getConfig($path, $filename);
 		return $config;
+			
 	} 
 
-	public function writeToDB($table, $val1, $val2, $zone, $stamp){
+	/**
+	*Calls DBController to insert a timezone and timestamp into the database
+	*
+	*@param string $zone The timezone name
+	*@param string $stamp The timestamp
+	*@return void
+	*/
+	public function writeToDB($zone, $stamp){
 			
-			$this->dbController->insertToTable($table, $val1, $val2, $zone, $stamp);
+		$this->dbController->insertToTable($zone, $stamp);
 		
 	}
 
-	public function setViewNotice($message){
-		$this->timeView->showNotice($message);
+	/**
+	*Calls the view to show a notice of a given type
+	*
+	*@param string $message The message to be output
+	*@param string $type The type of message to be output (blue or gray)
+	*@return void
+	*/
+	public function setViewNotice($message, $type){
+
+		if($type == "blue"){
+
+			$this->timeView->showNotice("<p class='ok'>".$message."</p>");
+
+		}
+
+		else{
+
+			$this->timeView->showNotice("<p class='notice'>".$message."</p>");
+
+		}
 	}
 
+	/**
+	*Calls the view to show the article containing a list of successful database insertions
+	*
+	*@return void
+	*/
 	public function setViewSuccesses(){
 
-	}
+		$successes = "<h2>Succesful insertions:</h2>
+		<article class='valid'>" 
+		. $this->dbController->reportSuccesses() . 
+		"</article>";
 
+		$this->timeView->showSuccesses($successes);
+
+	}
+	/**
+	*Calls the view to show the article containing a list of errors from the WS transfer
+	*
+	*@return void
+	*/
 	public function setViewErrors(){
 
 		$errors = "<h2>Failed transfers:</h2>
@@ -100,6 +203,35 @@ class UtilController{
 		"</article>";
 
 		$this->timeView->showErrors($errors);
+
+	}
+
+
+	//Methods for logger
+
+
+	/**
+	*Calls the logger to log something
+	*
+	*@param string $headerString The header of the something
+	*@param string $count The count of the something that happened
+	*@param string $contentString The content of the something
+	*@param string $datetime The filename of the file the something is to be logged in
+	*@return void
+	*/
+	public function logSomething($headerString, $count, $contentString, $datetime){
+		
+		try{
+
+			Logger::log($headerString, $count, $contentString, $datetime);
+		
+		}
+
+		catch(Exception $e){
+
+			$this->setViewNotice($e->getMessage(), "gray");
+		
+		}
 
 	}
 
