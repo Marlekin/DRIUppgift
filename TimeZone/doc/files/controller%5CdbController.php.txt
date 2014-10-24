@@ -1,7 +1,7 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/dbComp/myDB.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/dbComp/mySQLDB.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/dbComp/myDB.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/dbComp/mySQLDB.php");
 
 /**
 *Controls the setting up of the database, calls operations from the 
@@ -14,9 +14,20 @@ class DBController{
 	*/
 	private $myDB;
 
+	/**
+	*@var string Holds a string of successful DB inserts for the log
+	*/
+	private $resultString;
+
+	/**
+	*@var int Holds the count of succesful DB inserts for the log
+	*/
+	private $count;
+
+
 	public function __construct(){
 
-		$this->results = "";
+		$this->resultString = "";
 		$count = 0;
 
 	}
@@ -62,6 +73,8 @@ class DBController{
 
 		$this->myDB->insertSQL($zone, $stamp);
 
+		$this->count++;
+
 	}
 
 	/**
@@ -89,24 +102,49 @@ class DBController{
 	}
 
 	/**
+	*Returns the count of the successful inserts into the database
+	*
+	*@return int The count of successful inserts
+	*/
+	public function getSuccessCount(){
+
+		return $this->count;
+
+	}
+
+	/**
+	*Returns a list of the successful inserts into the database
+	*
+	*@return string The list of successful inserts
+	*/
+	public function getSuccesString(){
+
+		return $this->resultString;
+
+	}
+
+	/**
 	*Reports the database insertion results to the utility controller
 	*
 	*@return mixed The count of successful insertions and a list of inserted posts
 	*/
 	public function reportSuccesses(){
 
-		$results = $this->selectFromTable();
+		$result = $this->selectFromTable();
 
-		$resultString = "";
+		$results = "";
 
-		foreach($results as $data){
+		foreach($result as $data){
 
-			$resultString .= $data[$this->myDB->getZoneColumn()] . "	|	" 
+			$results .= $data[$this->myDB->getZoneColumn()] . "	|	" 
 					. $data[$this->myDB->getStampColumn()] . "<br />";
+
+			$this->resultString .= $data[$this->myDB->getZoneColumn()] . "	|	" 
+					. $data[$this->myDB->getStampColumn()] . "\r\n";
 					
 		}
 
-		return $this->myDB->getCount() . " successful database insertions:<br /><br />" . $resultString;
+		return $this->myDB->getCount() . " successful database insertions:<br /><br />" . $results;
 
 	}
 }

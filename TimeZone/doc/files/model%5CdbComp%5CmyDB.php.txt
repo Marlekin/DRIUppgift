@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/dbComp/medoo/medoo.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/dbComp/medoo/medoo.php");
 
 /**	
 *Inherits the Medoo framework. Acts as an abstracted mediating layer in the application.  

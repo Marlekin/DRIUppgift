@@ -1,11 +1,11 @@
 ﻿<?php
 ignore_user_abort(true);
 set_time_limit(0);
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/timeController.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/dbController.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/sessionManager.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/logger.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/util/configManager.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/controller/timeController.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/controller/dbController.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/util/sessionManager.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/util/logger.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/util/configManager.php");
 
 /**
 *Sets up the configuration for the script and takes the the outup from the 
@@ -79,7 +79,7 @@ class UtilController{
 
 			$this->dbController->setDatabase(
 				$dbConfig = $this->loadConfig(
-								"/TimeZone3/model/dbComp/config/","mySQLConfig.xml"));
+								"/TimeZone/model/dbComp/config/","mySQLConfig.xml"));
 
 			$this->setViewNotice("Database connection established", "blue");
 
@@ -88,7 +88,7 @@ class UtilController{
 
 
 			if($this->timeController->communicateWS($wsConfig = $this->loadConfig(
-									"/TimeZone3/model/timeComp/config/", "timeConfig.xml"))){
+									"/TimeZone/model/timeComp/config/", "timeConfig.xml"))){
 
 				$this->setViewNotice("Web service availability validated, 
 										transfer process started...", "gray");
@@ -107,7 +107,11 @@ class UtilController{
 
 
 				$this->logSomething("---Failed Transers---", $this->timeController->getErrorCount(), 
-									$this->timeController->reportErrors(), $date);
+									$this->timeController->getErrorString(), $date);
+
+
+				$this->logSomething("---Successful Database insertions---", $this->dbController->getSuccessCount(), 
+									$this->dbController->getSuccesString(), $date);
 
 				$this->setViewSuccesses();
 				$this->setViewErrors();
@@ -124,7 +128,6 @@ class UtilController{
 		}	
 	}
 
-	//Methods for ConfigManager
 
 	/**
 	*Loads a configuration file using ConfigManager
@@ -205,9 +208,6 @@ class UtilController{
 		$this->timeView->showErrors($errors);
 
 	}
-
-
-	//Methods for logger
 
 
 	/**

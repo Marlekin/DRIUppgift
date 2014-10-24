@@ -16,7 +16,7 @@ class Logger{
 	*/
 	public static function log($header, $content, $count, $datetime){
 
-		$logFile = fopen($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/logs/" . $datetime . ".txt", "a");
+		$logFile = fopen($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/logs/" . $datetime . ".txt", "a");
 
 		$logString = $header . "\r\n" . "Row count: " . $count . "\r\n" . 
 					$content . "\r\n \r\n";

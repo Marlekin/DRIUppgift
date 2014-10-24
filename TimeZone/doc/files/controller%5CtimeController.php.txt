@@ -1,8 +1,8 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/timeComm.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/zoneFetch.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/model/timeComp/stampFetch.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/timeComp/timeComm.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/timeComp/zoneFetch.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/model/timeComp/stampFetch.php");
 
 /**
 *Validates availability of domain and JSON, arranges fetching of timezones and
@@ -21,7 +21,7 @@ class TimeController{
 	private $stampFetch;
 
 	/**
-	*@var string Holds a string containing a list of errors
+	*@var string Holds a string containing a list of errors for the view
 	*/
 	private $errors;
 
@@ -29,6 +29,11 @@ class TimeController{
 	*@var int Holds the count of errors occurred during WS transfer
 	*/	
 	private $errorCount;
+
+	/**
+	*@var string Holds a string containing a list of errors for the log
+	*/	
+	private $errorString;
 
 	public function __construct(){
 
@@ -111,6 +116,7 @@ class TimeController{
 			catch(Exception $e){
 
 				$this->errors .= $e->getMessage() ."<br />";
+				$this->errorString .= $e->getMessage . "\r\n";
 				$this->errorCount++;
 
 			}
@@ -127,6 +133,17 @@ class TimeController{
 	public function getErrorCount(){
 
 		return $this->errorCount;
+
+	}
+
+	/**
+	*Returns a list of the errors that has occurred during the WS transfer
+	*
+	*@return string The list of error
+	*/
+	public function getErrorString(){
+
+		return $this->errorString;
 
 	}
 

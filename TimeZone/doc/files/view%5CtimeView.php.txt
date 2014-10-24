@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone3/controller/utilController.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/TimeZone/controller/utilController.php");
 
 /**
 *Handles the updating of the view with the dynamic content
